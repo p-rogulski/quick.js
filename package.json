@@ -1,0 +1,37 @@
+{
+  "name": "quick.js",
+  "version": "1.0.0",
+  "description": "JS library",
+  "main": "index.js",
+  "scripts": {
+    "dev": "rollup --config --configDev",
+    "prd": "rollup --config --configPrd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/p-rogulski/quick.js.git"
+  },
+  "keywords": [
+    "JS",
+    "quick.js",
+    "library"
+  ],
+  "author": "Piotr Rogulski",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/p-rogulski/quick.js/issues"
+  },
+  "homepage": "https://github.com/p-rogulski/quick.js#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@rollup/plugin-node-resolve": "^7.0.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.20.0",
+    "rollup": "^1.30.1",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-uglify": "^6.0.4"
+  }
+}

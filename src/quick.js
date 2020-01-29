@@ -1,3 +1,4 @@
+import struct from './core/struct';
 
 (function (window) {
 

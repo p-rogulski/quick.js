@@ -20,7 +20,7 @@ const struct = (function () {
 
                 tail = tail.next;
             }
-        }
+        };
 
         listApi.remove = function (nodeId) {
             let ptr, ptrPrev;
@@ -53,7 +53,7 @@ const struct = (function () {
             if (head) {
                 _process(head);
             }
-        }
+        };
 
         listApi.print = function (callback) {
             function _process(currentNode) {
@@ -65,25 +65,27 @@ const struct = (function () {
             if (head) {
                 _process(head);
             }
-        }
+        };
 
 
         return listApi;
 
-    }
+    };
 
     structApi.tree = function () {
 
-    }
+    };
 
     structApi.graph = function () {
 
-    }
+    };
 
 
     structApi.stack = function () {
 
-    }
+    };
 
     return structApi;
 })();
+
+export default struct;
