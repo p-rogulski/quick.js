@@ -2,87 +2,95 @@ const struct = (function () {
     const structApi = {};
     structApi.list = function () {
         const listApi = {};
-        var head, tail = null;
+        let _head, _tail = null;
 
         listApi.add = function (value) {
-            if (!head) {
-                head = {
+            if (!_head) {
+                _head = {
                     id: 0,
                     value: value,
                 };
 
-                tail = head;
+                _tail = _head;
             } else {
-                tail.next = {
-                    id: tail.id + 1,
+                _tail.next = {
+                    id: _tail.id + 1,
                     value: value,
                 };
 
-                tail = tail.next;
+                _tail = _tail.next;
             }
         };
 
         listApi.remove = function (nodeId) {
-            let ptr, ptrPrev;
+            let _ptr, _ptrPrev;
             function _removeNode() {
-                if (ptr === head) {
-                    head = ptr.next;
-                } else if (ptr === tail) {
-                    delete ptrPrev.next;
-                    tail = ptrPrev;
-                } else if (ptrPrev) {
-                    ptrPrev.next = ptr.next;
-                    delete ptr.next;
+                if (_ptr === _head) {
+                    _head = _ptr.next;
+                } else if (_ptr === _tail) {
+                    delete _ptrPrev.next;
+                    _tail = _ptrPrev;
+                } else if (_ptrPrev) {
+                    _ptrPrev.next = _ptr.next;
+                    delete _ptr.next;
                 }
 
             }
 
             function _process(currentNode) {
-                ptr = currentNode;
-                if (ptr.id === nodeId) {
+                _ptr = currentNode;
+                if (_ptr.id === nodeId) {
                     _removeNode();
-                } else if (ptr.id !== tail.id) {
-                    ptrPrev = ptr;
-                    ptr = ptr.next;
-                    _process(ptr);
+                } else if (_ptr.id !== _tail.id) {
+                    _ptrPrev = _ptr;
+                    _ptr = _ptr.next;
+                    _process(_ptr);
                 } else {
                     throw Error(`Element with index '${nodeId}' does not exsists.`);
                 }
             }
 
-            if (head) {
-                _process(head);
+            if (_head) {
+                _process(_head);
             }
         };
+
+        listApi.get = function (id) {
+            let _ptr = _head;
+
+            while (_ptr) {
+                if(_ptr.id===id){
+                    return _ptr.value;
+                }
+                _ptr = _ptr.next;
+            }
+        };
+
+        listApi.getLength = function () {
+            let _ptr = _head;
+            let _cntr = 0;
+
+            while (_ptr) {
+                _cntr++;
+                _ptr = _ptr.next;
+            }
+
+            return _cntr;
+        }; 
 
         listApi.print = function (callback) {
             function _process(currentNode) {
                 callback(currentNode.value, currentNode.id);
-                if (currentNode.id !== tail.id) {
+                if (currentNode.id !== _tail.id) {
                     _process(currentNode.next);
                 }
             }
-            if (head) {
-                _process(head);
+            if (_head) {
+                _process(_head);
             }
         };
 
-
         return listApi;
-
-    };
-
-    structApi.tree = function () {
-
-    };
-
-    structApi.graph = function () {
-
-    };
-
-
-    structApi.stack = function () {
-
     };
 
     return structApi;
