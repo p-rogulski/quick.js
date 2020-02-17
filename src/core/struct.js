@@ -4,6 +4,15 @@ const struct = (function () {
         const listApi = {};
         let _head, _tail = null;
 
+        listApi[Symbol.iterator] = function* () {
+            let _currentNode = _head;
+            
+            while (_currentNode) {
+                yield _currentNode.value;
+                _currentNode = _currentNode.next;
+            }
+        };
+
         listApi.add = function (value) {
             if (!_head) {
                 _head = {
@@ -72,12 +81,12 @@ const struct = (function () {
 
             }
 
-            function _reindex(){
-                _ptr=_head;
-                _cntr=0;
-                while(_ptr){
-                    _ptr.id=_cntr;
-                    _ptr=_ptr.next;
+            function _reindex() {
+                _ptr = _head;
+                _cntr = 0;
+                while (_ptr) {
+                    _ptr.id = _cntr;
+                    _ptr = _ptr.next;
                     _cntr++;
                 }
             }
@@ -87,7 +96,7 @@ const struct = (function () {
                 if (_ptr.id === nodeId) {
                     _removeNode();
                     _reindex();
-                } else if (_ptr.id !== _tail.id) {
+                } else if (_ptr) {
                     _ptrPrev = _ptr;
                     _ptr = _ptr.next;
                     _process(_ptr);
@@ -128,8 +137,8 @@ const struct = (function () {
 
         listApi.print = function (callback) {
             function _process(currentNode) {
-                callback(currentNode.value, currentNode.id);
-                if (currentNode.id !== _tail.id) {
+                if (currentNode) {
+                    callback(currentNode.value, currentNode.id);
                     _process(currentNode.next);
                 }
             }

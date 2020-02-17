@@ -6,15 +6,19 @@ function demoList(){
     list.add(30);
     list.add(40);
     list.add(50);
-    list.addByIndex(110,50);
+    list.addByIndex(110,59);
+    
+    for(let item of list){
+        console.log(item,'(fom iterable)');
+    }
 
     console.log('List state before remove');
     console.log(`List length: ${list.getLength()}`);
     console.log(`Value from method get(0): ${list.get(0)}`);
     console.log(`Value from method get(110): ${list.get(110)}`);
-    console.log('Values from method print:');
+
     list.print((nodeValue,index)=>{
-        console.log(`index:${index}, value:${nodeValue}`);
+        console.log(`index:${index}, value:${nodeValue}`, '(from print)');
     });
     console.log('List state after removing element with index==2');
     list.remove(2);
@@ -22,6 +26,9 @@ function demoList(){
     list.print((nodeValue,index)=>{
         console.log(`index:${index}, value:${nodeValue}`);
     });
+    
+
+   
 }
 
 

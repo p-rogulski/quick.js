@@ -3,7 +3,7 @@ import struct from './core/struct';
 (function (window) {
 
     function quick() {
-        const quickApi = { struct, };
+        const quickApi = { struct };
         return quickApi;
     }
 
